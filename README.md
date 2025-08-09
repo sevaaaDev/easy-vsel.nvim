@@ -2,13 +2,8 @@
 Easy Visual Selection
 
 ## features
-TODO: video
 ### show overlay for count motion
-'ve'
-![example of ve command](./img/ve.png)
-
-'vb'
-![example of vb command](./img/vb.png)
+![video demo](./easy-vsel-demo.mp4)
 
 ### pressing count after command will repeat the command
 ve3 will behave the same as ve3e. saves 1 keystroke
