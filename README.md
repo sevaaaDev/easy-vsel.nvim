@@ -3,7 +3,8 @@ Easy Visual Selection
 
 ## features
 ### show overlay for count motion
-![video demo](./easy-vsel-demo.mp4)
+
+https://github.com/user-attachments/assets/aeeae167-1916-4aae-aa56-efbc2c91a77b
 
 ### pressing count after command will repeat the command
 ve3 will behave the same as ve3e. saves 1 keystroke
