@@ -11,6 +11,15 @@ ve3 will behave the same as ve3e. saves 1 keystroke
 
 info: v3e behave the same as it was
 
+## install
+lazy.nvim
+```lua
+return {
+    "sevaaadev/easy-vsel.nvim"
+    opts = {}
+}
+```
+
 ## limitation
 the last command only get removed after changing mode, therefore after pressing 'vel', all of the count (1..9) will still repeat 'e' motion
 
