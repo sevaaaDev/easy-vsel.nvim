@@ -12,6 +12,7 @@ TODO: video
 
 ### pressing count after command will repeat the command
 ve3 will behave the same as ve3e. saves 1 keystroke
+
 info: v3e behave the same as it was
 
 ## limitation
