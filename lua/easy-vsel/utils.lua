@@ -1,7 +1,7 @@
 local M = {}
 function M.mark_col(namespaces, pos, count)
 	vim.api.nvim_buf_set_extmark(0, namespaces, pos[1] - 1, pos[2], {
-		virt_text = { { tostring(count), M.config.overlay_color } }, -- text and highlight group
+		virt_text = { { tostring(count), "Search" } }, -- text and highlight group
 		virt_text_pos = "overlay", -- overlays the actual character
 	})
 end
@@ -46,3 +46,4 @@ function M.mark_til_bol()
 	M.clear_mark("my_overlay_ns")
 	M.mark_til("b", orig_pos)
 end
+return M
