@@ -1,48 +1,42 @@
-local utils = require("easy-vsel.utils")
-local easy_select_last_cmd = ""
-local M = {
-	config = {},
-}
-function M.easy_vsel_e()
-	for _ = 1, vim.v.count1, 1 do
-		vim.cmd("normal! e")
-	end
-	utils.mark_til_eol()
-	easy_select_last_cmd = "e"
-end
-function M.easy_vsel_b()
-	for _ = 1, vim.v.count1, 1 do
-		vim.cmd("normal! b")
-	end
-	utils.mark_til_bol()
-	easy_select_last_cmd = "b"
+local M = {}
+local core = require("easy-vsel.core")
+
+local function keymap(mode, lhs, rhs, opts)
+	opts = opts or {}
+	opts.remap = true -- TODO: find a way to disable remap. currently this is needed by repeat_motion to recall core function
+	opts.silent = true
+	vim.keymap.set(mode, lhs, rhs, opts)
 end
 
+local function setup_count_keymap()
+	for i = 1, 9, 1 do
+		keymap("v", tostring(i), function()
+			return core.repeat_motion(i)
+		end, { expr = true })
+	end
+end
+local function e()
+	for _ = 1, vim.v.count1, 1 do
+		vim.cmd("norm! e")
+	end
+	core.e()
+end
+local function b()
+	for _ = 1, vim.v.count1, 1 do
+		vim.cmd("norm! b")
+	end
+	core.b()
+end
 M.setup = function(config)
-	M.config.overlay_color = config.overlay_color or "Search"
 	vim.api.nvim_create_autocmd("ModeChanged", {
 		pattern = "v:*",
 		callback = function()
-			utils.clear_mark("my_overlay_ns")
-			easy_select_last_cmd = ""
+			core.clear()
 		end,
 	})
-	local function keymap(mode, lhs, rhs, opts)
-		opts = opts or {}
-		opts.remap = true
-		opts.silent = true
-		vim.keymap.set(mode, lhs, rhs, opts)
-	end
-	keymap("v", "e", M.easy_vsel_e)
-	keymap("v", "b", M.easy_vsel_b)
-	for i = 1, 9, 1 do
-		keymap("v", tostring(i), function()
-			if easy_select_last_cmd == "" then
-				return vim.keycode(tostring(i))
-			end
-			return vim.keycode(i .. easy_select_last_cmd)
-		end, { expr = true })
-	end
+	keymap("v", "e", e)
+	keymap("v", "b", b)
+	setup_count_keymap()
 end
 
 return M
