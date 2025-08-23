@@ -3,7 +3,7 @@ local core = require("easy-vsel.core")
 
 local function keymap(mode, lhs, rhs, opts)
 	opts = opts or {}
-	opts.remap = true -- TODO: find a way to disable remap. currently this is needed by repeat_motion to recall core function
+	opts.remap = true
 	opts.silent = true
 	vim.keymap.set(mode, lhs, rhs, opts)
 end
