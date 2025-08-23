@@ -26,9 +26,6 @@ local function mark_til(direction, start_pos)
 			break
 		end
 		local letter = tostring(i)
-		if i == 1 then
-			letter = direction
-		end
 		mark_col(ns, next_pos, letter)
 		i = i + 1
 		if i == 10 then
